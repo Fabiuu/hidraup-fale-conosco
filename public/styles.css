@@ -855,3 +855,14 @@ body {
  .header-logo,.header-raup,.header-certifications img { height:63px; padding:0; border-radius:0; }
  .header-certifications { gap:4px; }
 }
+
+/* Respiro final do topo e Raup maior, sem rolagem em320px. */
+.site-header { padding:16px; }
+@media(max-width:767px) {
+ .site-header { padding:16px; }
+ .header-brand { grid-template-columns:124px 58px 1fr; column-gap:4px; }
+ .header-logo { width:124px; height:72px; }
+ .header-raup { width:58px; height:72px; }
+ .header-certifications { gap:4px; }
+ .header-certifications img { height:48px; max-width:48%; }
+}
