@@ -669,8 +669,8 @@ details[open] .privacy-summary::after { transform: rotate(180deg); }
 }
 
 html,body{height:100%;overflow:hidden}
-.page-scroll{height:calc(100dvh - 76px - env(safe-area-inset-bottom,0px));overflow-y:auto;overflow-x:hidden;scroll-padding-bottom:24px}
-.floating-contacts{position:fixed;right:18px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:100}
+.page-scroll{height:100vh;height:100dvh;overflow-y:auto;overflow-x:hidden;scroll-padding-bottom:100px;padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+.floating-contacts{position:fixed;right:18px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:100;background:transparent;border:0;box-shadow:none}
 .floating-contact{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #dfe3e8;box-shadow:0 2px 8px #00000012;color:#25D366;cursor:pointer}
 .floating-contact svg{width:25px;height:25px}
 .floating-contact:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
