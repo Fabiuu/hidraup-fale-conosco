@@ -723,3 +723,8 @@ body {
 @media (min-width:768px) { .layout { align-items:flex-start;gap:32px; } .intro { min-width:0;padding:38px 30px;position:sticky;top:28px; } .form-section { min-width:0;padding-top:0; } .main { padding-top:36px; } }
 @media (max-width:375px) { .intro { padding:24px 18px; } .floating-contacts { right:14px;gap:8px; } }
 @media (prefers-reduced-motion:reduce) { .floating-contact,.input,.select,.textarea,.btn { transition:none; } }
+
+/* Footer owns the breathing room, no empty strip outside the navy surface. */
+.page-scroll { padding-bottom:0; }
+.footer { padding-bottom:calc(90px + env(safe-area-inset-bottom,0px)); }
+.footer-whatsapp-text { color:var(--color-footer-text);font-size:var(--text-sm);font-weight:500;cursor:default; }
