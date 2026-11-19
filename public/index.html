@@ -157,7 +157,7 @@
             <h2 class="success-title">Obrigado pelo envio!</h2>
             <p class="success-notice">Sua mensagem foi enviada ao destinatário configurado do canal.</p>
             <div id="protocol-panel" hidden>
-              <p>Guarde seu protocolo como comprovante do envio. Não o compartilhe.</p>
+              <p>Guarde seu protocolo para consultar a resposta. Ele é a chave de acesso: não o compartilhe.</p>
               <output id="protocol-code" class="protocol-code"></output>
               <button type="button" class="btn btn--secondary" id="copy-protocol">Copiar protocolo</button>
               <p id="copy-status" role="status"></p>
@@ -171,7 +171,18 @@
 
 
 
-<details class="privacy-note"><summary class="privacy-summary">Sobre este canal</summary><div class="privacy-content"><p>Identificar-se é opcional. As mensagens são enviadas por e-mail e registradas em planilha privada. A hospedagem e o Google podem manter registros técnicos.</p></div></details>
+    <section class="protocol-lookup" aria-labelledby="lookup-title">
+      <h2 id="lookup-title">Consultar protocolo</h2>
+      <p>Use seu código completo para consultar apenas a resposta da direção.</p>
+      <form id="lookup-form">
+        <label for="lookup-code">Protocolo</label>
+        <input id="lookup-code" class="input" type="text" autocomplete="off" spellcheck="false" maxlength="36" placeholder="HDP-…" required>
+        <button id="lookup-submit" class="btn btn--secondary" type="submit">Consultar</button>
+      </form>
+      <p id="lookup-status" role="status" aria-live="polite"></p>
+      <p id="lookup-response" class="lookup-response" hidden></p>
+    </section>
+    <details class="privacy-note"><summary class="privacy-summary">Sobre este canal</summary><div class="privacy-content"><p>Identificar-se é opcional. As mensagens são enviadas por e-mail e registradas em planilha privada. A hospedagem e o Google podem manter registros técnicos.</p></div></details>
   </main>
 
   <footer class="footer" role="contentinfo">
