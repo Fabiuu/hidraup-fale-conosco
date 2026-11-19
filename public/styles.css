@@ -675,3 +675,5 @@ html,body{height:100%;overflow:hidden}
 .floating-contact svg{width:25px;height:25px}
 .floating-contact:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
 .floating-contact[aria-disabled=true]{cursor:default}
+
+.floating-brand img{width:34px;height:auto;object-fit:contain}.footer-official{margin:0 0 12px;font-size:15px}.footer-official a{color:#b9d2ff;text-decoration:underline;text-underline-offset:3px}
