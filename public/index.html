@@ -58,7 +58,7 @@
                 Tipo <span class="label__optional">(opcional)</span>
               </label>
               <select id="tipo" name="tipo" class="select" aria-describedby="tipo-help">
-                <option value="">Selecione…</option>
+                <option value="">Sugestão (padrão)</option>
                 <option value="sugestao">Sugestão</option>
                 <option value="reclamacao">Reclamação</option>
                 <option value="denuncia">Denúncia</option>
@@ -149,14 +149,14 @@
           <div id="success-screen" class="success-screen" hidden>
             <div class="success-icon" aria-hidden="true">✓</div>
             <h2 class="success-title">Obrigado pelo envio!</h2>
-            <p class="success-notice">Nesta prévia, nenhuma mensagem foi enviada ou salva.</p>
+            <p class="success-notice">Sua mensagem foi enviada ao destinatário configurado do canal.</p>
             <button type="button" class="btn btn--secondary" id="back-btn">Voltar ao formulário</button>
           </div>
         </div>
       </section>
     </div>
 
-    <details class="privacy-note"><summary class="privacy-summary">Sobre esta prévia</summary><div class="privacy-content"><p>Identificar-se é opcional. Esta página está em modo de demonstração: nenhuma mensagem é enviada ou salva.</p></div></details>
+    <details class="privacy-note"><summary class="privacy-summary">Sobre este canal</summary><div class="privacy-content"><p>Identificar-se é opcional. As mensagens são enviadas por e-mail e registradas em planilha privada. A hospedagem e o Google podem manter registros técnicos.</p></div></details>
   </main>
 
   <footer class="footer" role="contentinfo">
@@ -184,7 +184,7 @@
     </div>
   </footer>
 
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <script src="config.js?v=live1"></script>
+  <script src="app.js?v=live1"></script>
 </body>
 </html>

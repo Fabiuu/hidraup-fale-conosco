@@ -173,8 +173,9 @@
   // ---- Coleta dados do formulário ----
   function collectFormData() {
     return {
-      tipo: fields.tipo.value.trim() || null,
-      identificacao: fields.identificacao.value.trim() || null,
+      tipo: fields.tipo.value.trim() || 'sugestao',
+      vinculo: fields.identificacao.value.trim() || null,
+      website: honeypot.value.trim(),
       nome: fields.nome.value.trim() || null,
       setor: fields.setor.value.trim() || null,
       contato: fields.contato.value.trim() || null,
@@ -302,7 +303,7 @@
     // Atualiza texto de sucesso para modo live
     const notice = successScreen.querySelector('.success-notice');
     if (notice) {
-      notice.textContent = 'Sua mensagem foi entregue ao diretor.';
+      notice.textContent = 'Sua mensagem foi enviada ao destinatário configurado do canal.';
     }
     
     backBtn.focus({ preventScroll: true });
