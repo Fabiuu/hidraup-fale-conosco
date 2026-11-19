@@ -9,28 +9,31 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Header oficial: navy, logo + wordmark -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="https://hidraup.com.br" class="header-brand" aria-label="Hidraup Soluções - Página inicial">
+        <img src="assets/logo.png" alt="" class="header-logo" width="653" height="380">
+        <span class="header-wordmark">Hidraup Soluções</span>
+      </a>
+    </div>
+  </header>
+
   <!-- Status de prévia (prominente mas não intrusivo) -->
   <div id="preview-banner" class="preview-banner" role="status" aria-live="polite">
     <span class="preview-banner__text" id="preview-text"></span>
   </div>
 
   <main class="main" id="main-content">
-    <!-- Layout desktop: duas colunas | mobile: empilhado -->
     <div class="layout">
-      <!-- Coluna 1: Introdução -->
+      <!-- Introdução (sem brand duplicado) -->
       <section class="intro" aria-labelledby="intro-title">
         <div class="intro__content">
-          <!-- Brand: ícone + wordmark -->
-          <div class="brand" aria-hidden="true">
-            <img src="assets/logo.png" alt="" class="brand__icon" width="48" height="48">
-            <span class="brand__wordmark">HIDRAUP</span>
-          </div>
-          
           <p class="eyebrow">CANAL DIRETO</p>
           <h1 id="intro-title" class="headline">Fale com o diretor</h1>
-          
+
           <div class="intro__text">
-            <p>Na Hidraup, respeito e ética fazem parte de cada conversa. Este espaço é seu para compartilhar sugestões, dicas, reclamações ou denúncias com seriedade e sigilo.</p>
+            <p>Na Hidraup, respeito e ética fazem parte de cada conversa. Este espaço é seu para compartilhar sugestões, reclamações ou denúncias com seriedade e sigilo.</p>
             <p>Você pode se identificar ou permanecer anônimo. Em ambos os casos, sua mensagem será tratada com seriedade e sigilo e recebida somente pelo diretor.</p>
           </div>
         </div>
@@ -42,7 +45,7 @@
           <!-- Estado: Formulário -->
           <form id="contact-form" class="form" novalidate>
             <h2 id="form-title" class="form__title">Envie sua mensagem</h2>
-            
+
             <!-- Honeypot anti-spam (oculto, fora de tab order, sem autocomplete) -->
             <div class="honeypot" aria-hidden="true">
               <label for="website-url">Não preencha este campo</label>
@@ -57,11 +60,15 @@
               <select id="tipo" name="tipo" class="select" aria-describedby="tipo-help">
                 <option value="">Selecione…</option>
                 <option value="sugestao">Sugestão</option>
-                <option value="dica">Dica</option>
                 <option value="reclamacao">Reclamação</option>
                 <option value="denuncia">Denúncia</option>
               </select>
               <span id="tipo-help" class="help-text">Categoria da sua mensagem</span>
+            </div>
+
+            <!-- Aviso de anonimato antes dos campos de identificação -->
+            <div class="anonymity-notice" role="note" aria-live="polite">
+              Os campos de identificação abaixo são opcionais. Deixe em branco para manter seu anonimato.
             </div>
 
             <!-- Você é (opcional) -->
@@ -112,11 +119,11 @@
                 <span class="label__required-text" aria-hidden="true">(obrigatório)</span>
               </label>
               <div class="textarea-wrapper">
-                <textarea 
-                  id="mensagem" 
-                  name="mensagem" 
-                  class="textarea" 
-                  placeholder="Descreva sua sugestão, dica, reclamação ou denúncia com o máximo de detalhes possível…"
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  class="textarea"
+                  placeholder="Descreva sua sugestão, reclamação ou denúncia com o máximo de detalhes possível…"
                   rows="6"
                   maxlength="10000"
                   required
@@ -153,7 +160,28 @@
   </main>
 
   <footer class="footer" role="contentinfo">
-    <p>Hidraup — Canal Direto com a Direção</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-name">Hidraup Soluções</p>
+        <address class="footer-address">
+          Av. do Brasil, 55 - Alvorada (Casa Branca)<br>
+          Betim - MG
+        </address>
+      </div>
+      <div class="footer-contacts">
+        <p class="footer-phones">
+          <a href="tel:+553135941755">(31) 3594-1755</a> /
+          <a href="tel:+553135944555">(31) 3594-4555</a>
+        </p>
+        <p class="footer-mobile">
+          <a href="tel:+5531985276905">(31) 98527-6905</a>
+        </p>
+        <p class="footer-social">
+          <a href="https://wa.me/5531985276905" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.instagram.com/hidraup_mg/" target="_blank" rel="noopener">Instagram</a>
+        </p>
+      </div>
+    </div>
   </footer>
 
   <script src="config.js"></script>
