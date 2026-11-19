@@ -55,12 +55,12 @@ function doPost(e) {
     var ss=SpreadsheetApp.openById(activeSheetId_()), config=ss.getSheetByName('Config').getRange('B1:B2').getValues(), to=String(config[0][0]).trim(), cc=String(config[1][0]||'').trim();
     if(!email_(to) || (cc && !email_(cc)) || MailApp.getRemainingDailyQuota()<(cc?2:1)) return response_({ok:false,error:'Canal temporariamente indisponível. Tente mais tarde.'});
     var protocol=protocol_();
-    var now=new Date(), body='Hidraup - Ouvidoria: Fale com o Diretor\nProtocolo: '+protocol+'\n\nData: '+Utilities.formatDate(now,'America/Sao_Paulo','dd/MM/yyyy HH:mm:ss')+'\nTipo: '+tipo+'\nVínculo: '+(vinculo||'Não informado')+'\nNome: '+(nome||'Não informado')+'\nSetor: '+(setor||'Não informado')+'\nContato: '+(contato||'Não informado')+'\n\nMensagem:\n'+mensagem;
+    var now=new Date(), body='Hidraup - Ouvidoria: Fale Conosco\nProtocolo: '+protocol+'\n\nData: '+Utilities.formatDate(now,'America/Sao_Paulo','dd/MM/yyyy HH:mm:ss')+'\nTipo: '+tipo+'\nVínculo: '+(vinculo||'Não informado')+'\nNome: '+(nome||'Não informado')+'\nSetor: '+(setor||'Não informado')+'\nContato: '+(contato||'Não informado')+'\n\nMensagem:\n'+mensagem;
     sheet=ss.getSheetByName('Mensagens'); row=sheet.getLastRow()+1;
     sheet.getRange(row,1,1,9).setValues([[now,cell_(tipo),cell_(vinculo),cell_(nome),cell_(setor),cell_(contato),cell_(mensagem),protocol,'']]); SpreadsheetApp.flush();
     var subjectType=tipo==='Melhoria'?'Melhoria':'Contato';
-    var htmlBody='<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.5;color:#17243b"><h2>Ouvidoria: Fale com o Diretor - Hidraup</h2><div style="white-space:pre-wrap">'+html_(body).replace(/\n/g,'<br>')+'</div></div>';
-    var mail={to:to,subject:'Nova mensagem - Ouvidoria: Fale com o Diretor ('+subjectType+') - '+protocol,body:body,htmlBody:htmlBody,name:'Ouvidoria: Fale com o Diretor - Hidraup'}; if(cc)mail.cc=cc;
+    var htmlBody='<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.5;color:#17243b"><h2>Ouvidoria: Fale Conosco - Hidraup</h2><div style="white-space:pre-wrap">'+html_(body).replace(/\n/g,'<br>')+'</div></div>';
+    var mail={to:to,subject:'Nova mensagem - Ouvidoria: Fale Conosco ('+subjectType+') - '+protocol,body:body,htmlBody:htmlBody,name:'Ouvidoria: Fale Conosco - Hidraup'}; if(cc)mail.cc=cc;
     try { MailApp.sendEmail(mail); } catch(mailError) { sheet.getRange(row,1,1,9).clearContent(); SpreadsheetApp.flush(); return response_({ok:false,error:'Não foi possível enviar. Tente mais tarde.'}); }
     return response_({ok:true,message:'Mensagem enviada com sucesso.',protocol:protocol});
   } catch(err) { return response_({ok:false,error:'Não foi possível enviar. Confira os campos ou tente mais tarde.'}); }
@@ -92,8 +92,8 @@ function monthlySummary() {
     if(props.getProperty(key)==='sent') return;
     var to=String(ss.getSheetByName('Config').getRange('B1').getValue()).trim();
     if(!email_(to) || MailApp.getRemainingDailyQuota()<1) throw new Error('Destinatário ou quota indisponível');
-    var body='Resumo mensal - Ouvidoria: Fale com o Diretor - Hidraup\nMês: '+stats.month+'\nTotal: '+stats.total+'\nMelhoria: '+stats.counts['Melhoria']+'\nReclamação: '+stats.counts['Reclamação']+'\nDenúncia: '+stats.counts['Denúncia']+'\nRespondidas: '+stats.answered+'\n\nRespondida = coluna Resposta preenchida no momento do resumo. Sem conteúdo das mensagens.';
-    MailApp.sendEmail({to:to,subject:'Resumo mensal - Ouvidoria: Fale com o Diretor - '+stats.month,body:body,name:'Ouvidoria: Fale com o Diretor - Hidraup'});
+    var body='Resumo mensal - Ouvidoria: Fale Conosco - Hidraup\nMês: '+stats.month+'\nTotal: '+stats.total+'\nMelhoria: '+stats.counts['Melhoria']+'\nReclamação: '+stats.counts['Reclamação']+'\nDenúncia: '+stats.counts['Denúncia']+'\nRespondidas: '+stats.answered+'\n\nRespondida = coluna Resposta preenchida no momento do resumo. Sem conteúdo das mensagens.';
+    MailApp.sendEmail({to:to,subject:'Resumo mensal - Ouvidoria: Fale Conosco - '+stats.month,body:body,name:'Ouvidoria: Fale Conosco - Hidraup'});
     props.setProperty(key,'sent');
   } finally {if(lock.hasLock()) lock.releaseLock();}
 }
@@ -103,7 +103,7 @@ function migratePrivateSheet() {
   try {
     var props=PropertiesService.getScriptProperties(), existing=props.getProperty('activeSheetId');
     if(existing){console.log('Planilha ativa já migrada: '+SpreadsheetApp.openById(existing).getUrl());return;}
-    var old=SpreadsheetApp.openById(LEGACY_SHEET_ID), fresh=SpreadsheetApp.create('Hidraup - Ouvidoria: Fale com o Diretor'), defaultSheet=fresh.getSheets()[0];
+    var old=SpreadsheetApp.openById(LEGACY_SHEET_ID), fresh=SpreadsheetApp.create('Hidraup - Ouvidoria: Fale Conosco'), defaultSheet=fresh.getSheets()[0];
     fresh.setSpreadsheetTimeZone(old.getSpreadsheetTimeZone()); fresh.setSpreadsheetLocale(old.getSpreadsheetLocale());
     ['Config','Mensagens'].forEach(function(name){old.getSheetByName(name).copyTo(fresh).setName(name);});
     fresh.deleteSheet(defaultSheet);

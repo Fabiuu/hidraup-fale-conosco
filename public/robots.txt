@@ -1,4 +1,4 @@
-# Hidraup — Fale com o Diretor
+# Hidraup — Fale Conosco
 # Modo prévia: não indexar, não seguir
 User-agent: *
 Disallow: /

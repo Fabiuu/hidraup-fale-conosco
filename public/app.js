@@ -1,5 +1,5 @@
 /**
- * Hidraup — Ouvidoria: Fale com o Diretor
+ * Hidraup — Ouvidoria: Fale Conosco
  * Lógica do formulário: validação, contador, prévia/live, honeypot
  * Sem dependências, sem tracking, sem armazenamento local
  */
