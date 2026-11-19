@@ -789,3 +789,7 @@ body {
  .floating-contact { background:#f2f7ff; }
 }
 .input[aria-invalid="true"],.select[aria-invalid="true"],.textarea[aria-invalid="true"] { background-color:#513042; }
+
+/* Footer contact links match the official-site link; mobile/WhatsApp stay plain. */
+.footer a.footer-contact-link { color:#b9d2ff;text-decoration:underline;text-underline-offset:3px;font-size:15px; }
+.footer a.footer-contact-link:hover { color:#fff; }
