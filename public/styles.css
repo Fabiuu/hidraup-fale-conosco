@@ -829,3 +829,17 @@ body {
   .header-certifications { flex-direction:row; gap:8px; }
   .header-certifications img { width:auto; height:88px; }
 }
+
+/* Logo e Raup em cartões brancos da mesma altura. */
+.header-brand { grid-template-columns:150px 84px 1fr; column-gap:16px; }
+.header-logo,.header-raup { height:104px; background:#fff; border-radius:12px; padding:6px; object-fit:contain; box-sizing:border-box; }
+.header-logo { width:150px; }
+.header-raup { display:block; width:84px; }
+@media(max-width:767px) {
+  .header-brand { grid-template-columns:88px 58px 1fr; column-gap:8px; }
+  .header-logo,.header-raup { height:72px; padding:4px; border-radius:9px; }
+  .header-logo { width:88px; }
+  .header-raup { width:58px; }
+  .header-certifications { gap:4px; }
+  .header-certifications img { height:54px; max-width:48%; }
+}
