@@ -843,3 +843,15 @@ body {
   .header-certifications { gap:4px; }
   .header-certifications img { height:54px; max-width:48%; }
 }
+
+/* PNGs originais transparentes, sem cartões ou fundo. */
+.header-brand { grid-template-columns:150px 84px 1fr; }
+.header-logo,.header-raup { height:104px; padding:0; background:transparent; border-radius:0; object-fit:contain; }
+.header-certifications img { height:104px; }
+@media(max-width:767px) {
+ .header-brand { grid-template-columns:108px 51px 1fr; column-gap:6px; }
+ .header-logo { width:108px; }
+ .header-raup { width:51px; }
+ .header-logo,.header-raup,.header-certifications img { height:63px; padding:0; border-radius:0; }
+ .header-certifications { gap:4px; }
+}
