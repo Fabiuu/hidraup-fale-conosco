@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Fale com o Diretor — Hidraup</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Status de prévia (prominente mas não intrusivo) -->
+  <div id="preview-banner" class="preview-banner" role="status" aria-live="polite">
+    <span class="preview-banner__text" id="preview-text"></span>
+  </div>
+
+  <main class="main" id="main-content">
+    <!-- Layout desktop: duas colunas | mobile: empilhado -->
+    <div class="layout">
+      <!-- Coluna 1: Introdução -->
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro__content">
+          <!-- Brand: ícone + wordmark -->
+          <div class="brand" aria-hidden="true">
+            <img src="assets/logo.png" alt="" class="brand__icon" width="48" height="48">
+            <span class="brand__wordmark">HIDRAUP</span>
+          </div>
+          
+          <p class="eyebrow">CANAL DIRETO</p>
+          <h1 id="intro-title" class="headline">Fale com o diretor</h1>
+          
+          <div class="intro__text">
+            <p>Na Hidraup, respeito e ética fazem parte de cada conversa. Este espaço é seu para compartilhar sugestões, dicas, reclamações ou denúncias com seriedade e sigilo.</p>
+            <p>Você pode se identificar ou ficar anônimo. Sua mensagem será recebida somente pelo diretor.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coluna 2: Formulário -->
+      <section class="form-section" aria-labelledby="form-title">
+        <div class="form-container">
+          <!-- Estado: Formulário -->
+          <form id="contact-form" class="form" novalidate>
+            <h2 id="form-title" class="form__title">Envie sua mensagem</h2>
+            
+            <!-- Honeypot anti-spam (oculto, fora de tab order, sem autocomplete) -->
+            <div class="honeypot" aria-hidden="true">
+              <label for="website-url" style="display:none; position:absolute; left:-9999px;">Não preencha este campo</label>
+              <input type="text" id="website-url" name="website_url" tabindex="-1" autocomplete="off" style="display:none; position:absolute; left:-9999px; opacity:0; pointer-events:none;">
+            </div>
+
+            <!-- Tipo (opcional) -->
+            <div class="form-group">
+              <label for="tipo" class="label">
+                Tipo <span class="label__optional">(opcional)</span>
+              </label>
+              <select id="tipo" name="tipo" class="select" aria-describedby="tipo-help">
+                <option value="">Selecione…</option>
+                <option value="sugestao">Sugestão</option>
+                <option value="dica">Dica</option>
+                <option value="reclamacao">Reclamação</option>
+                <option value="denuncia">Denúncia</option>
+              </select>
+              <span id="tipo-help" class="help-text">Categoria da sua mensagem</span>
+            </div>
+
+            <!-- Você é (opcional) -->
+            <div class="form-group">
+              <label for="identificacao" class="label">
+                Você é <span class="label__optional">(opcional)</span>
+              </label>
+              <select id="identificacao" name="identificacao" class="select" aria-describedby="identificacao-help">
+                <option value="">Selecione…</option>
+                <option value="funcionario">Funcionário</option>
+                <option value="cliente">Cliente</option>
+                <option value="nao-dizer">Prefiro não dizer</option>
+              </select>
+              <span id="identificacao-help" class="help-text">Como você se identifica</span>
+            </div>
+
+            <!-- Nome ou empresa (opcional) -->
+            <div class="form-group">
+              <label for="nome" class="label">
+                Nome ou empresa <span class="label__optional">(opcional)</span>
+              </label>
+              <input type="text" id="nome" name="nome" class="input" placeholder="Seu nome ou nome da empresa" autocomplete="name" maxlength="200" aria-describedby="nome-help">
+              <span id="nome-help" class="help-text">Opcional — apenas se quiser se identificar</span>
+            </div>
+
+            <!-- Setor (opcional) -->
+            <div class="form-group">
+              <label for="setor" class="label">
+                Setor <span class="label__optional">(opcional)</span>
+              </label>
+              <input type="text" id="setor" name="setor" class="input" placeholder="Ex.: Compras, Vendas, Produção…" autocomplete="off" maxlength="100" aria-describedby="setor-help">
+              <span id="setor-help" class="help-text">Opcional — seu setor ou área</span>
+            </div>
+
+            <!-- Contato para resposta (opcional) -->
+            <div class="form-group">
+              <label for="contato" class="label">
+                Contato para resposta <span class="label__optional">(opcional)</span>
+              </label>
+              <input type="text" id="contato" name="contato" class="input" placeholder="E-mail ou telefone" autocomplete="email" maxlength="200" aria-describedby="contato-help">
+              <span id="contato-help" class="help-text help-text--emphasis">Se quiser resposta</span>
+            </div>
+
+            <!-- Mensagem (obrigatória) -->
+            <div class="form-group form-group--required">
+              <label for="mensagem" class="label">
+                Mensagem <span class="label__required" aria-hidden="true">*</span>
+                <span class="label__required-text" aria-hidden="true">(obrigatório)</span>
+              </label>
+              <div class="textarea-wrapper">
+                <textarea 
+                  id="mensagem" 
+                  name="mensagem" 
+                  class="textarea" 
+                  placeholder="Descreva sua sugestão, dica, reclamação ou denúncia com o máximo de detalhes possível…"
+                  rows="6"
+                  maxlength="10000"
+                  required
+                  aria-describedby="mensagem-help mensagem-count"
+                  aria-required="true"
+                ></textarea>
+                <div class="char-count" id="mensagem-count" aria-live="polite">
+                  <span id="char-current">0</span> / 10000 caracteres
+                </div>
+              </div>
+              <span id="mensagem-help" class="help-text">Mínimo 1 caractere, máximo 10000</span>
+              <div id="mensagem-error" class="error-message" role="alert" aria-live="assertive" hidden></div>
+            </div>
+
+            <!-- Botão enviar -->
+            <button type="submit" class="btn btn--primary" id="submit-btn">
+              <span class="btn__text">Enviar</span>
+              <span class="btn__loading" hidden>Enviando…</span>
+            </button>
+          </form>
+
+          <!-- Estado: Sucesso (inicialmente oculto) -->
+          <div id="success-screen" class="success-screen" hidden>
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <h2 class="success-title">Obrigado pelo envio!</h2>
+            <p class="success-notice">Nesta prévia, nenhuma mensagem foi enviada ou salva.</p>
+            <button type="button" class="btn btn--secondary" id="back-btn">Voltar ao formulário</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Nota de privacidade (expandível) -->
+    <details class="privacy-note" id="privacy-note">
+      <summary class="privacy-summary">Privacidade e funcionamento</summary>
+      <div class="privacy-content">
+        <p><strong>Este aplicativo não rastreia você.</strong> Não há cookies, localStorage, analytics, scripts de terceiros ou fontes externas.</p>
+        <p><strong>Registro técnico de infraestrutura:</strong> seu provedor de hospedagem/CDN pode registrar endereço IP e metadados de requisição HTTP (logs de acesso padrão). Não prometemos anonimato absoluto de IP.</p>
+        <p><strong>Destino da mensagem (futuro):</strong> quando ativado, o formulário envia diretamente para um script do Google Apps Script (HTTPS POST, <code>Content-Type: text/plain</code>). Apenas o diretor tem acesso ao destino configurado. Nenhum dado fica armazenado neste site.</p>
+        <p><strong>Modo atual:</strong> <em>Prévia</em> — nada é transmitido nem gravado.</p>
+      </div>
+    </details>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <p>Hidraup — Canal Direto com a Direção</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
