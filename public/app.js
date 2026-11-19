@@ -173,7 +173,7 @@
   // ---- Coleta dados do formulário ----
   function collectFormData() {
     return {
-      tipo: fields.tipo.value.trim() || 'sugestao',
+      tipo: fields.tipo.value.trim() || 'melhoria',
       vinculo: fields.identificacao.value.trim() || null,
       website: honeypot.value.trim(),
       nome: fields.nome.value.trim() || null,

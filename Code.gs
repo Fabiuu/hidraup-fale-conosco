@@ -22,8 +22,8 @@ function doPost(e) {
     var d=JSON.parse(e.postData.contents);
     if (!d || typeof d!=='object' || Array.isArray(d)) return response_({ok:false,error:'Dados inválidos.'});
     if (clean_(d.website,200)) return response_({ok:false,error:'Envio recusado.'});
-    var tipos={sugestao:'Sugestão',reclamacao:'Reclamação',denuncia:'Denúncia'}; var rawTipo=clean_(d.tipo,30); var tipo=tipos[rawTipo]||rawTipo, vinculo=clean_(d.vinculo || d.identificacao,80), nome=clean_(d.nome,120), setor=clean_(d.setor,120), contato=clean_(d.contato,200), mensagem=clean_(d.mensagem,10000);
-    if (['Sugestão','Reclamação','Denúncia'].indexOf(tipo)<0 || !mensagem) return response_({ok:false,error:'Confira o tipo e a mensagem.'});
+    var tipos={melhoria:'Melhoria',sugestao:'Melhoria','Sugestão':'Melhoria',reclamacao:'Reclamação',denuncia:'Denúncia'}; var rawTipo=clean_(d.tipo,30); var tipo=tipos[rawTipo]||rawTipo, vinculo=clean_(d.vinculo || d.identificacao,80), nome=clean_(d.nome,120), setor=clean_(d.setor,120), contato=clean_(d.contato,200), mensagem=clean_(d.mensagem,10000);
+    if (['Melhoria','Reclamação','Denúncia'].indexOf(tipo)<0 || !mensagem) return response_({ok:false,error:'Confira o tipo e a mensagem.'});
     lock=LockService.getScriptLock(); if(!lock.tryLock(10000)) return response_({ok:false,error:'Canal ocupado. Tente novamente.'});
     var ss=SpreadsheetApp.openById(SHEET_ID), config=ss.getSheetByName('Config').getRange('B1:B2').getValues(), to=String(config[0][0]).trim(), cc=String(config[1][0]||'').trim();
     if(!email_(to) || (cc && !email_(cc)) || MailApp.getRemainingDailyQuota()<(cc?2:1)) return response_({ok:false,error:'Canal temporariamente indisponível. Tente mais tarde.'});
