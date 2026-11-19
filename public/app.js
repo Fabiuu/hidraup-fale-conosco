@@ -61,7 +61,7 @@
     updateCharCount();
     
     // Foco inicial no primeiro campo (mobile friendly)
-    if (fields.tipo) fields.tipo.focus();
+
   }
 
   // ---- Event Listeners ----
@@ -150,7 +150,7 @@
     
     // Honeypot: se preenchido, bloqueia silenciosamente (não faz POST)
     if (honeypot && honeypot.value.trim() !== '') {
-      console.log('[Honeypot] Spam detectado — envio bloqueado');
+
       return false;
     }
     
@@ -179,9 +179,7 @@
       setor: fields.setor.value.trim() || null,
       contato: fields.contato.value.trim() || null,
       mensagem: fields.mensagem.value.trim(),
-      timestamp: new Date().toISOString(),
-      userAgent: navigator.userAgent,
-      url: window.location.href
+      timestamp: new Date().toISOString()
     };
   }
 
@@ -194,7 +192,7 @@
     
     // Honeypot check (dupla checagem)
     if (honeypot && honeypot.value.trim() !== '') {
-      console.log('[Honeypot] Spam detectado no submit — abortando');
+
       return;
     }
     
@@ -212,7 +210,7 @@
 
   // ---- Modo prévia: feedback visual apenas ----
   function handlePreviewSuccess(data) {
-    console.log('[Preview] Formulário válido — dados que seriam enviados:', data);
+
     
     // Esconde formulário, mostra sucesso
     form.hidden = true;
@@ -272,7 +270,7 @@
       }
       
       if (result.ok !== true) {
-        throw new Error(result.error || 'Servidor retornou erro: ok !== true');
+        throw new Error('Envio não confirmado.');
       }
       
       // Sucesso real
@@ -287,7 +285,7 @@
       } else if (error instanceof TypeError && error.message.includes('fetch')) {
         message += 'Erro de rede ou CORS. Verifique se o endpoint permite seu domínio.';
       } else {
-        message += error.message;
+        message += 'Tente novamente em alguns instantes.';
       }
       
       showError(message);
@@ -297,7 +295,7 @@
 
   // ---- Sucesso no modo live ----
   function handleLiveSuccess(data) {
-    console.log('[Live] Enviado com sucesso:', data);
+
     form.hidden = true;
     successScreen.hidden = false;
     

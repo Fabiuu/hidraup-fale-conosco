@@ -31,7 +31,7 @@
           
           <div class="intro__text">
             <p>Na Hidraup, respeito e ética fazem parte de cada conversa. Este espaço é seu para compartilhar sugestões, dicas, reclamações ou denúncias com seriedade e sigilo.</p>
-            <p>Você pode se identificar ou ficar anônimo. Sua mensagem será recebida somente pelo diretor.</p>
+            <p>Você pode se identificar ou permanecer anônimo. Em ambos os casos, sua mensagem será tratada com seriedade e sigilo e recebida somente pelo diretor.</p>
           </div>
         </div>
       </section>
@@ -45,8 +45,8 @@
             
             <!-- Honeypot anti-spam (oculto, fora de tab order, sem autocomplete) -->
             <div class="honeypot" aria-hidden="true">
-              <label for="website-url" style="display:none; position:absolute; left:-9999px;">Não preencha este campo</label>
-              <input type="text" id="website-url" name="website_url" tabindex="-1" autocomplete="off" style="display:none; position:absolute; left:-9999px; opacity:0; pointer-events:none;">
+              <label for="website-url">Não preencha este campo</label>
+              <input type="text" id="website-url" name="website_url" tabindex="-1" autocomplete="off">
             </div>
 
             <!-- Tipo (opcional) -->
@@ -149,16 +149,7 @@
       </section>
     </div>
 
-    <!-- Nota de privacidade (expandível) -->
-    <details class="privacy-note" id="privacy-note">
-      <summary class="privacy-summary">Privacidade e funcionamento</summary>
-      <div class="privacy-content">
-        <p><strong>Este aplicativo não rastreia você.</strong> Não há cookies, localStorage, analytics, scripts de terceiros ou fontes externas.</p>
-        <p><strong>Registro técnico de infraestrutura:</strong> seu provedor de hospedagem/CDN pode registrar endereço IP e metadados de requisição HTTP (logs de acesso padrão). Não prometemos anonimato absoluto de IP.</p>
-        <p><strong>Destino da mensagem (futuro):</strong> quando ativado, o formulário envia diretamente para um script do Google Apps Script (HTTPS POST, <code>Content-Type: text/plain</code>). Apenas o diretor tem acesso ao destino configurado. Nenhum dado fica armazenado neste site.</p>
-        <p><strong>Modo atual:</strong> <em>Prévia</em> — nada é transmitido nem gravado.</p>
-      </div>
-    </details>
+    <details class="privacy-note"><summary class="privacy-summary">Sobre esta prévia</summary><div class="privacy-content"><p>Identificar-se é opcional. Esta página está em modo de demonstração: nenhuma mensagem é enviada ou salva.</p></div></details>
   </main>
 
   <footer class="footer" role="contentinfo">
