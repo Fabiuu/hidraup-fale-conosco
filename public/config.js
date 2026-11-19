@@ -1,1 +1,1 @@
-window.HIDRAUP_CONFIG = {"preview": false, "endpoint": "https://script.google.com/macros/s/AKfycbxogrQ-0vs7o2R6cjpYbi3nA7guMphAFJ75Smad-ePzmYov1NQ_j4FrxdS-tqYVTxEV/exec", "timeout": 30000, "maxMessageLength": 10000};
+window.HIDRAUP_CONFIG = {"preview": false, "endpoint": "https://script.google.com/macros/s/AKfycbwugJPK14DH0-rNv_JrQl5feuFrr7bUZ5vGFTxXKdm7-NmEHtgOMCncM_iRrbnX3EE/exec", "timeout": 30000, "maxMessageLength": 10000};
