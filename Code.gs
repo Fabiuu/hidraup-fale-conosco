@@ -1,6 +1,16 @@
 var SHEET_ID = '1DhiHgPzBC1AQBPhKcS5tfaZPdysXykKxdm5THGdD51w';
 function response_(data) { return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON); }
-function doGet() { return response_({ok:true, service:'Hidraup - Fale com o Diretor', accepts:'POST'}); }
+function publicPhone_(value) {
+  var raw=String(value || '').trim();
+  if (!raw || !/^\+?[1-9][0-9]{7,14}$/.test(raw)) return '';
+  return raw.replace(/^\+/, '');
+}
+function doGet() {
+  try {
+    var rows=SpreadsheetApp.openById(SHEET_ID).getSheetByName('Config').getRange('B3:B4').getValues();
+    return response_({ok:true,contacts:{whatsapp:publicPhone_(rows[0][0]),phone:publicPhone_(rows[1][0])}});
+  } catch (err) { return response_({ok:false,contacts:{whatsapp:'',phone:''}}); }
+}
 function authorize() { SpreadsheetApp.openById(SHEET_ID).getSheetByName('Config').getRange('B1:B2').getValues(); MailApp.getRemainingDailyQuota(); }
 function clean_(v, max) { if (v === undefined || v === null) return ''; if (typeof v !== 'string') throw new Error('INVALID'); if(v.length>max || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(v)) throw new Error('INVALID'); return v.trim(); }
 function cell_(v) { return /^[\s]*[=+\-@]/.test(v) ? "'"+v : v; }
