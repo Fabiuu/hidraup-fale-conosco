@@ -752,3 +752,40 @@ body {
  .anonymity-notice { background:rgba(176,211,255,.13);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px); }
  .btn--primary { background:linear-gradient(145deg,rgba(84,145,255,.65),rgba(40,99,220,.48));-webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%); }
 }
+
+/* AA text contrast: dark optical layer keeps glass readable over blue light. */
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+ .form-container { background:linear-gradient(145deg,rgba(9,25,49,.64),rgba(15,37,70,.58)); }
+ .input,.select,.textarea { background-color:rgba(8,23,46,.34); }
+ .input:focus,.select:focus,.textarea:focus { background-color:rgba(8,23,46,.52); }
+ .anonymity-notice { background:rgba(12,34,65,.55); }
+ .btn--primary { background:linear-gradient(145deg,rgba(32,78,160,.9),rgba(24,60,133,.88)); }
+}
+.btn--primary:hover:not(:disabled) { background:linear-gradient(145deg,#245bbd,#193f8b); }
+/* Unsupported blur and the user's reduced-transparency preference use solid paint. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+ .site-header { background:#10213e; }
+ .intro,.privacy-note { background:#1b385e; }
+ .form-container { background:#1c3659; }
+ .input,.select,.textarea { background-color:#28466b; }
+ .input:focus,.select:focus,.textarea:focus { background-color:#2d517c; }
+ .anonymity-notice { background:#2b4e78; }
+ .btn--primary { background:#224eac; }
+ .footer { background:#0d1c34; }
+ .floating-contact { background:#f2f7ff; }
+}
+@media (prefers-reduced-transparency:reduce) {
+ body { background:#10213e;background-image:none; }
+ .page-scroll::before,.page-scroll::after { display:none; }
+ .site-header,.intro,.privacy-note,.form-container,.input,.select,.textarea,.anonymity-notice,.btn--primary,.footer,.floating-contact { -webkit-backdrop-filter:none;backdrop-filter:none; }
+ .site-header { background:#10213e; }
+ .intro,.privacy-note { background:#1b385e; }
+ .form-container { background:#1c3659; }
+ .input,.select,.textarea { background-color:#28466b; }
+ .input:focus,.select:focus,.textarea:focus { background-color:#2d517c; }
+ .anonymity-notice { background:#2b4e78; }
+ .btn--primary { background:#224eac; }
+ .footer { background:#0d1c34; }
+ .floating-contact { background:#f2f7ff; }
+}
+.input[aria-invalid="true"],.select[aria-invalid="true"],.textarea[aria-invalid="true"] { background-color:#513042; }
