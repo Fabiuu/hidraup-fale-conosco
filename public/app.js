@@ -386,30 +386,9 @@
 
 (function() {
   'use strict';
-  const config = window.HIDRAUP_CONFIG;
-  const form = document.getElementById('lookup-form'), button=document.getElementById('lookup-submit'), status=document.getElementById('lookup-status'), output=document.getElementById('lookup-response');
-  const bytes=new Uint8Array(16); crypto.getRandomValues(bytes); const client=Array.from(bytes,x=>x.toString(16).padStart(2,'0')).join('');
-  let attempts=0, windowStart=Date.now();
   document.getElementById('copy-protocol').addEventListener('click',async()=>{
     const code=document.getElementById('protocol-code').textContent;
     try {await navigator.clipboard.writeText(code);document.getElementById('copy-status').textContent='Protocolo copiado.';}
     catch(e){document.getElementById('copy-status').textContent='Selecione e copie o protocolo acima.';}
-  });
-  form.addEventListener('submit',async e=>{
-    e.preventDefault(); output.hidden=true;output.textContent='';
-    if(Date.now()-windowStart>=60000){attempts=0;windowStart=Date.now();}
-    if(attempts>=5){status.textContent='Limite de consultas. Aguarde um minuto e tente novamente.';return;}
-    const protocol=document.getElementById('lookup-code').value.trim().toUpperCase();
-    if(!/^HDP-[A-F0-9]{32}$/.test(protocol)){status.textContent='Digite o protocolo completo, incluindo HDP- e os 32 caracteres.';return;}
-    attempts++;button.disabled=true;status.textContent='Consultando…';
-    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),config.timeout||30000);
-    try {
-      const r=await fetch(config.endpoint,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8','Accept':'application/json'},credentials:'omit',mode:'cors',signal:controller.signal,body:JSON.stringify({action:'lookup',protocol,client})});
-      if(!r.ok)throw Error('HTTP');const data=await r.json();
-      if(data.ok!==true){status.textContent=data.error||'Consulta indisponível. Tente mais tarde.';return;}
-      if(typeof data.response==='string' && data.response.trim()){output.textContent=data.response;output.hidden=false;status.textContent='Resposta da direção:';}
-      else status.textContent='Ainda não há resposta disponível para este protocolo. Confira o código e consulte mais tarde.';
-    } catch(err){status.textContent='Não foi possível consultar. Tente mais tarde.';}
-    finally{clearTimeout(timer);button.disabled=false;}
   });
 })();
