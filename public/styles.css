@@ -668,12 +668,10 @@ details[open] .privacy-summary::after { transform: rotate(180deg); }
   background: transparent;
 }
 
-.alternate-contact{max-width:640px;margin:28px auto;padding:0 24px;text-align:center}
-.alternate-contact h2{font-size:18px;color:#374151;margin:0 0 16px;font-weight:600}
-.alternate-contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.contact-method{display:flex;align-items:center;justify-content:center;gap:12px;background:#fff;border:1px solid #dfe3e8;border-radius:12px;padding:17px 20px;color:#243047;text-decoration:none;font-size:17px;font-weight:600;min-height:60px;transition:border-color .15s,box-shadow .15s}
-.contact-method svg{width:26px;height:26px;flex-shrink:0;color:#25D366}
-.contact-method:hover{border-color:#25D366;box-shadow:0 2px 8px #0000000a}
-.contact-method:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
-@media(max-width:600px){.alternate-contact-grid{grid-template-columns:1fr}}
-.contact-method[hidden],.alternate-contact[hidden]{display:none}
+html,body{height:100%;overflow:hidden}
+.page-scroll{height:calc(100dvh - 76px - env(safe-area-inset-bottom,0px));overflow-y:auto;overflow-x:hidden;scroll-padding-bottom:24px}
+.floating-contacts{position:fixed;right:18px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:100}
+.floating-contact{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #dfe3e8;box-shadow:0 2px 8px #00000012;color:#25D366;cursor:pointer}
+.floating-contact svg{width:25px;height:25px}
+.floating-contact:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+.floating-contact[aria-disabled=true]{cursor:default}
