@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
-  <title>Fale com o Diretor - Hidraup Serviços Hidráulicos e Pneumáticos</title>
+  <title>Ouvidoria: Fale com o Diretor - Hidraup Serviços Hidráulicos e Pneumáticos</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -137,6 +137,8 @@
               <div id="mensagem-error" class="error-message" role="alert" aria-live="assertive" hidden></div>
             </div>
 
+            <p class="channel-good-faith">Ninguém será prejudicado por usar este canal de boa-fé.</p>
+            <p class="lgpd-notice">Os dados informados são usados apenas para tratar sua mensagem e ficam acessíveis somente à direção.</p>
             <!-- Botão enviar -->
             <button type="submit" class="btn btn--primary" id="submit-btn">
               <span class="btn__text">Enviar</span>
@@ -149,6 +151,12 @@
             <div class="success-icon" aria-hidden="true">✓</div>
             <h2 class="success-title">Obrigado pelo envio!</h2>
             <p class="success-notice">Sua mensagem foi enviada ao destinatário configurado do canal.</p>
+            <div id="protocol-panel" hidden>
+              <p>Guarde seu protocolo para consultar a resposta. Ele é a chave de acesso: não o compartilhe.</p>
+              <output id="protocol-code" class="protocol-code"></output>
+              <button type="button" class="btn btn--secondary" id="copy-protocol">Copiar protocolo</button>
+              <p id="copy-status" role="status"></p>
+            </div>
             <button type="button" class="btn btn--secondary" id="back-btn">Voltar ao formulário</button>
           </div>
         </div>
@@ -158,6 +166,17 @@
 
 
 
+    <section class="protocol-lookup" aria-labelledby="lookup-title">
+      <h2 id="lookup-title">Consultar protocolo</h2>
+      <p>Use seu código completo para consultar apenas a resposta da direção.</p>
+      <form id="lookup-form">
+        <label for="lookup-code">Protocolo</label>
+        <input id="lookup-code" class="input" type="text" autocomplete="off" spellcheck="false" maxlength="36" placeholder="HDP-…" required>
+        <button id="lookup-submit" class="btn btn--secondary" type="submit">Consultar</button>
+      </form>
+      <p id="lookup-status" role="status" aria-live="polite"></p>
+      <p id="lookup-response" class="lookup-response" hidden></p>
+    </section>
     <details class="privacy-note"><summary class="privacy-summary">Sobre este canal</summary><div class="privacy-content"><p>Identificar-se é opcional. As mensagens são enviadas por e-mail e registradas em planilha privada. A hospedagem e o Google podem manter registros técnicos.</p></div></details>
   </main>
 

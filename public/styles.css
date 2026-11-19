@@ -793,3 +793,15 @@ body {
 /* Footer contact links match the official-site link; mobile/WhatsApp stay plain. */
 .footer a.footer-contact-link { color:#b9d2ff;text-decoration:underline;text-underline-offset:3px;font-size:15px; }
 .footer a.footer-contact-link:hover { color:#fff; }
+
+.channel-good-faith {font-size: .95rem; line-height:1.6; margin: 1rem 0; color:#fff;}
+.lgpd-notice {font-size:.9rem;line-height:1.6;color:#e3edff;margin:1rem 0;}
+.protocol-code {display:block; overflow-wrap:anywhere; font:600 1rem/1.8 monospace; color:#fff; margin:1rem 0; user-select:all;}
+.protocol-lookup {max-width:600px; margin:2rem auto; padding:1.5rem; border:1px solid #829cc2;border-radius:20px;background:#102b50;color:#fff;}
+.protocol-lookup h2 {font-size:1.4rem;line-height:1.4;margin-bottom:.75rem;}
+.protocol-lookup p {line-height:1.6; margin:.75rem 0;}
+.protocol-lookup label {display:block;margin:1rem 0 .5rem;}
+.protocol-lookup button {margin-top:1rem;}
+.lookup-response {white-space:pre-wrap;overflow-wrap:anywhere;border-top:1px solid #829cc2;padding-top:1rem;}
+#protocol-panel p {color:#e3edff;line-height:1.6;}
+.protocol-code {font-size:.85rem;word-break:break-all;}
