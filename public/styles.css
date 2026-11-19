@@ -811,3 +811,15 @@ body {
   .header-certifications img { width:74px; }
   .header-wordmark { font-size:18px; }
 }
+
+/* Selos dourados verticais com alpha, alinhados ao lado da marca. */
+.header-brand { grid-template-columns:150px 1fr; column-gap:20px; }
+.header-logo { width:150px; }
+.header-certifications { flex-direction:row; align-items:center; gap:12px; }
+.header-certifications img { width:auto; height:104px; }
+@media(max-width:767px) {
+  .header-brand { grid-template-columns:100px 1fr; column-gap:12px; }
+  .header-logo { width:100px; }
+  .header-certifications { flex-direction:row; gap:8px; }
+  .header-certifications img { width:auto; height:88px; }
+}
