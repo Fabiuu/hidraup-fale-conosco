@@ -15,6 +15,7 @@ function authorize() { SpreadsheetApp.openById(SHEET_ID).getSheetByName('Config'
 function clean_(v, max) { if (v === undefined || v === null) return ''; if (typeof v !== 'string') throw new Error('INVALID'); if(v.length>max || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(v)) throw new Error('INVALID'); return v.trim(); }
 function cell_(v) { return /^[\s]*[=+\-@]/.test(v) ? "'"+v : v; }
 function email_(v) { return typeof v==='string' && /^[^\s@,;\r\n]+@[^\s@,;\r\n]+\.[^\s@,;\r\n]+$/.test(v.trim()); }
+function html_(v) { return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function doPost(e) {
   var lock, row=0, sheet;
   try {
@@ -30,7 +31,9 @@ function doPost(e) {
     var now=new Date(), body='Hidraup - Fale com o Diretor\n\nData: '+Utilities.formatDate(now,'America/Sao_Paulo','dd/MM/yyyy HH:mm:ss')+'\nTipo: '+tipo+'\nVínculo: '+(vinculo||'Não informado')+'\nNome: '+(nome||'Não informado')+'\nSetor: '+(setor||'Não informado')+'\nContato: '+(contato||'Não informado')+'\n\nMensagem:\n'+mensagem;
     sheet=ss.getSheetByName('Mensagens'); row=sheet.getLastRow()+1;
     sheet.getRange(row,1,1,7).setValues([[now,cell_(tipo),cell_(vinculo),cell_(nome),cell_(setor),cell_(contato),cell_(mensagem)]]); SpreadsheetApp.flush();
-    var mail={to:to,subject:'[Fale com o Diretor] '+tipo,body:body,name:'Hidraup - Fale com o Diretor'}; if(cc)mail.cc=cc;
+    var subjectType=tipo==='Melhoria'?'Melhoria':'Contato';
+    var htmlBody='<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.5;color:#17243b"><h2>Fale com o Diretor - Hidraup</h2><div style="white-space:pre-wrap">'+html_(body).replace(/\n/g,'<br>')+'</div></div>';
+    var mail={to:to,subject:'Nova mensagem - Fale com o Diretor ('+subjectType+')',body:body,htmlBody:htmlBody,name:'Fale com o Diretor - Hidraup'}; if(cc)mail.cc=cc;
     try { MailApp.sendEmail(mail); } catch(mailError) { sheet.getRange(row,1,1,7).clearContent(); SpreadsheetApp.flush(); return response_({ok:false,error:'Não foi possível enviar. Tente mais tarde.'}); }
     return response_({ok:true,message:'Mensagem enviada com sucesso.'});
   } catch(err) { return response_({ok:false,error:'Não foi possível enviar. Confira os campos ou tente mais tarde.'}); }
